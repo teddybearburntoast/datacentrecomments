@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Public opposition to UK data centre planning: what 807 comments reveal about consultation, community, and national policy</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --border: #e8e7e3;
+  --border-strong: #c8c6c0;
+  --text: #1a1a18;
+  --text-secondary: #4a4a46;
+  --text-muted: #8a8a85;
+  --teal: #1D9E75;
+  --teal-bg: #E1F5EE;
+  --teal-text: #085041;
+  --coral: #D85A30;
+  --coral-bg: #FAECE7;
+  --coral-text: #712B13;
+  --purple: #7F77DD;
+  --purple-bg: #EEEDFE;
+  --purple-text: #3C3489;
+  --amber: #BA7517;
+  --amber-bg: #FAEEDA;
+  --amber-text: #633806;
+  --blue: #378ADD;
+  --blue-bg: #E6F1FB;
+  --blue-text: #0C447C;
+  --green: #639922;
+  --green-bg: #EAF3DE;
+  --green-text: #27500A;
+}
+
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: Georgia, 'Times New Roman', serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.8;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(250,250,249,0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 2rem;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 50px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+.nav-brand { font-weight: 600; font-size: 13px; color: var(--text-muted); letter-spacing: 0.04em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a { font-size: 12px; color: var(--text-muted); text-decoration: none; }
+.nav-links a:hover { color: var(--text); }
+
+/* ARTICLE LAYOUT */
+.article-wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem; }
+
+/* HEADER */
+.article-header { padding: 4rem 0 2.5rem; border-bottom: 2px solid var(--text); margin-bottom: 2.5rem; }
+.article-kicker {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 1.25rem; display: block;
+}
+.article-title {
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  font-weight: 700; line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--text); margin-bottom: 1.25rem;
+}
+.article-standfirst {
+  font-size: 1.15rem; line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-style: italic;
+}
+.article-byline {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px; color: var(--text-muted);
+  display: flex; flex-wrap: wrap; gap: 1.5rem;
+}
+.article-byline b { color: var(--text-secondary); font-weight: 500; }
+
+/* BODY TEXT */
+.article-body { padding-bottom: 4rem; }
+
+.article-body p {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin-bottom: 1.4rem;
+}
+
+.article-body p:first-child::first-letter {
+  font-size: 3.5rem;
+  font-weight: 700;
+  float: left;
+  line-height: 0.8;
+  margin: 0.1em 0.1em 0 0;
+  color: var(--text);
+}
+
+h2 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.4rem; font-weight: 700;
+  color: var(--text);
+  margin: 2.5rem 0 0.75rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  line-height: 1.25;
+}
+
+h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.05rem; font-weight: 700;
+  color: var(--text);
+  margin: 1.75rem 0 0.5rem;
+}
+
+/* PULL QUOTE */
+.pull-quote {
+  margin: 2rem -2rem;
+  padding: 1.5rem 2rem;
+  border-top: 3px solid var(--text);
+  border-bottom: 1px solid var(--border);
+}
+.pull-quote p {
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: var(--text) !important;
+  font-style: italic;
+  margin: 0 !important;
+}
+
+/* COMMENT QUOTE */
+blockquote {
+  margin: 1.5rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid var(--border-strong);
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}
+blockquote cite {
+  font-style: normal;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 6px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+
+/* DATA FIGURES — inline with article */
+.figure {
+  margin: 2rem 0;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.25rem;
+}
+.figure-title {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px; font-weight: 600; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+  margin-bottom: 12px;
+}
+.figure-note {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px; color: var(--text-muted);
+  margin-top: 10px; line-height: 1.5;
+}
+
+/* STAT ROW */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 2rem 0;
+}
+.stat-cell {
+  background: var(--surface);
+  padding: 1rem 1.1rem;
+}
+.stat-num {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 1.9rem; font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text); line-height: 1; margin-bottom: 4px;
+}
+.stat-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px; color: var(--text-muted); line-height: 1.4;
+}
+.stat-num.teal { color: var(--teal); }
+.stat-num.coral { color: var(--coral); }
+.stat-num.purple { color: var(--purple); }
+.stat-num.amber { color: var(--amber); }
+
+/* TIMELINE */
+.timeline { margin: 1.5rem 0; padding-left: 20px; border-left: 2px solid var(--border); }
+.tl-item { position: relative; margin-bottom: 1.25rem; padding-left: 16px; }
+.tl-item::before {
+  content: '';
+  position: absolute; left: -22px; top: 5px;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--surface); border: 2px solid var(--border-strong);
+}
+.tl-item.peak::before { background: var(--coral); border-color: var(--coral); }
+.tl-item.decision::before { background: var(--purple); border-color: var(--purple); }
+.tl-date {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 10px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px;
+}
+.tl-text {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px; color: var(--text-secondary); line-height: 1.5;
+}
+.tl-text strong { color: var(--text); }
+
+/* POLICY CALLOUT */
+.policy-box {
+  margin: 2rem 0;
+  padding: 1.25rem 1.5rem;
+  background: var(--purple-bg);
+  border-left: 4px solid var(--purple);
+  border-radius: 0 6px 6px 0;
+}
+.policy-box-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 10px; font-weight: 700; color: var(--purple-text);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+}
+.policy-box p {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px !important; line-height: 1.55 !important;
+  color: var(--purple-text) !important;
+  margin-bottom: 0 !important;
+  font-style: normal !important;
+}
+.policy-box p::first-letter { all: unset; }
+
+/* FINDINGS GRID */
+.findings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 12px;
+  margin: 2rem 0;
+}
+.finding-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1.1rem 1.25rem;
+  background: var(--surface);
+}
+.finding-num {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 11px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 6px;
+}
+.finding-card h3 {
+  font-size: 14px !important; margin: 0 0 6px !important; padding: 0 !important; border: none !important;
+  line-height: 1.3;
+}
+.finding-card p {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 13px !important; line-height: 1.5 !important;
+  color: var(--text-secondary) !important;
+  margin: 0 !important;
+}
+.finding-card p::first-letter { all: unset; }
+
+/* ASIDE / METHODOLOGY */
+.aside {
+  margin: 2rem 0;
+  padding: 1rem 1.25rem;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+.aside-label {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 10px; font-weight: 700; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px;
+}
+.aside p {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size: 12px !important; line-height: 1.6 !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 0.5rem !important;
+}
+.aside p:last-child { margin-bottom: 0 !important; }
+.aside p::first-letter { all: unset; }
+
+/* APP TABLE */
+.data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 1.5rem 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif; }
+.data-table th { text-align: left; padding: 8px 10px; border-bottom: 2px solid var(--text);
+  font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text); }
+.data-table td { padding: 9px 10px; border-bottom: 1px solid var(--border); color: var(--text-secondary); vertical-align: top; }
+.data-table tr:last-child td { border-bottom: none; }
+.badge { font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 20px; white-space: nowrap; }
+.badge-green { background: var(--green-bg); color: var(--green-text); }
+.badge-amber { background: var(--amber-bg); color: var(--amber-text); }
+
+/* FOOTER */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 1.5rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+}
+.footer-inner { max-width: 720px; margin: 0 auto; }
+.footer-inner p { font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.5rem; }
+.footer-inner p::first-letter { all: unset; }
+.footer-inner a { color: var(--text-muted); }
+
+@media (max-width: 600px) {
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .article-wrap { padding: 0 1rem; }
+  .pull-quote { margin: 1.5rem 0; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">Planning Analysis</span>
+  <div class="nav-links">
+    <a href="#applications">The applications</a>
+    <a href="#what-people-said">What people said</a>
+    <a href="#why-approved">Why they were approved</a>
+    <a href="#system">The consultation system</a>
+    <a href="#findings">Findings</a>
+  </div>
+</nav>
+
+<div class="article-wrap">
+
+<header class="article-header">
+  <span class="article-kicker">Data centre planning · Analysis · June 2026</span>
+  <h1 class="article-title">Public opposition to UK data centre planning: what 807 comments reveal about consultation, community, and national policy</h1>
+  <p class="article-standfirst">Four applications, two local authorities, and more than a thousand objections — none of which prevented approval. An analysis of every public comment submitted to four data centre planning applications finds that the consultation system is structurally misaligned with the scale of public concern it is now expected to absorb.</p>
+  <div class="article-byline">
+    <span><b>807</b> comments analysed</span>
+    <span><b>756</b> substantive</span>
+    <span><b>4</b> applications · Wiltshire &amp; North Lincolnshire</span>
+    <span><b>Data: June 2024 – October 2025</b></span>
+  </div>
+</header>
+
+<div class="article-body">
+
+<p>When Wiltshire Council's Strategic Planning Committee approved Ark Data Centres' application to build a seventh data centre on Westwells Road in Corsham on 10 February 2026, it was resolving a planning application that had attracted more than 1,100 public objections over 18 months, triggered three waves of community comment activity, prompted a last-minute 17-page legal rebuttal that deferred the committee date by eight weeks, and produced specific allegations that site clearance had begun before the decision was made. The committee approved it anyway, with conditions, in a decision the council described as "complex."</p>
+
+<p>This analysis examines every public comment submitted to that application and to three others in North Lincolnshire — 807 comments in total, 756 of which contained substantive text. It is not an analysis of whether the decisions were right. It is an analysis of what the consultation record reveals: about the nature of public concern, the structure of the communities objecting, the limitations of the consultation system itself, and the national policy framework that determined the outcome regardless of how many people objected.</p>
+
+<div class="aside">
+  <p class="aside-label">About this analysis</p>
+  <p>The four applications were selected because they generated substantial public comment records on publicly accessible planning portals, and because they involve data centre development — a sector undergoing rapid growth and growing community scrutiny. They are not a representative national sample. North Lincolnshire has explicitly positioned itself as a national AI Growth Zone, which may make its applications atypical. Every finding should be understood as a hypothesis requiring validation across a larger dataset rather than an established national pattern.</p>
+  <p>Comment classification was performed through close reading of the full comment text. Template detection used verbatim phrase matching. Non-UK commenter identification relied solely on explicit location statements in the comment text. Where the original dataset's pre-built sentiment classifier conflicted with the comment text, the text was treated as authoritative.</p>
+</div>
+
+<h2 id="applications">Four applications</h2>
+
+<p>The dataset spans two local planning authorities and a period of approximately 18 months. The applications share a subject — data centre infrastructure — but almost nothing else.</p>
+
+<div style="overflow-x:auto; margin: 1.5rem 0;">
+<table class="data-table">
+  <thead>
+    <tr>
+      <th>Application</th>
+      <th>Developer / site</th>
+      <th>Submitted</th>
+      <th>Decision</th>
+      <th>Outcome</th>
+      <th>Substantive comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Wiltshire<br><small style="color:var(--text-muted)">PL/2023/10233</small></td>
+      <td>Ark Data Centres — Spring Park (6th DC), Corsham</td>
+      <td>Late 2023</td>
+      <td>2024</td>
+      <td><span class="badge badge-green">Approved with conditions</span></td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <td>Wiltshire<br><small style="color:var(--text-muted)">PL/2024/05527</small></td>
+      <td>Ark Data Centres — Spring Park extension (7th DC), "Donkey Field", Corsham</td>
+      <td>June 2024</td>
+      <td>10 Feb 2026</td>
+      <td><span class="badge badge-green">Approved with conditions</span></td>
+      <td>436</td>
+    </tr>
+    <tr>
+      <td>N. Lincs<br><small style="color:var(--text-muted)">PA-2024-584</small></td>
+      <td>Humber Tech Park Ltd — 309,000m² across 3 buildings, South Killingholme</td>
+      <td>14 May 2024</td>
+      <td>28 Aug 2024</td>
+      <td><span class="badge badge-green">Outline approved</span></td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <td>N. Lincs<br><small style="color:var(--text-muted)">PA-2025-643</small></td>
+      <td>Elsham Tech Park Ltd — 1GW campus, 176ha, former RAF Elsham Wolds</td>
+      <td>Late May 2025</td>
+      <td>11 Mar 2026</td>
+      <td><span class="badge badge-amber">Minded to approve — NH objection pending</span></td>
+      <td>260</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>Humber Tech Park Ltd and Elsham Tech Park Ltd share directors — both are connected to developer Greystoke — making the North Lincolnshire applications consecutive submissions by the same team. The sixth Ark data centre at Spring Park (PL/2023/10233) attracted no public opposition and passed without controversy. The seventh, on adjacent land known locally as the Donkey Field, generated 436 substantive objections. The difference between the two was not the technology, the developer, or the LPA. It was the land.</p>
+
+<h2 id="what-people-said">What people said — and what they meant</h2>
+
+<p>The 436 substantive comments on Wiltshire PL/2024/05527 represent the most substantial and analytically coherent consultation record in the dataset. Every comment is dated, named, and individually written. The contrast with the North Lincolnshire Elsham application — where 259 of 260 substantive comments have no date — is stark, and the implications are discussed below. At Wiltshire, it is possible to read the consultation record as a document of sustained community concern.</p>
+
+<div class="figure">
+  <p class="figure-title">Figure 1 — Principal concern categories, Wiltshire PL/2024/05527 (436 substantive comments)</p>
+  <div style="position:relative; width:100%; height:240px;">
+    <canvas id="concernChart" role="img" aria-label="Horizontal bar chart: Visual 127, Environment 97, Community 75, Flooding and drainage 48, Noise 45, Traffic 24, Other 20">Visual impact 127, Environment 97, Community character 75, Flooding/drainage 48, Noise 45, Traffic 24, Other 20.</canvas>
+  </div>
+  <p class="figure-note">Categories assigned through close reading of comment text. A comment may address multiple concerns; the primary concern is recorded. "Environment" includes ecology, wildlife, and biodiversity references.</p>
+</div>
+
+<p>Visual impact and environmental concern together account for more than half of all objections. But the most analytically significant finding is the distribution across time. The application attracted comment in three distinct waves, each corresponding to a revision submission by the applicant.</p>
+
+<div class="figure">
+  <p class="figure-title">Figure 2 — Monthly comment volume, Wiltshire PL/2024/05527</p>
+  <div style="position:relative; width:100%; height:200px;">
+    <canvas id="timelineChart" role="img" aria-label="Bar chart of monthly comments: Aug 2024 80, Nov 2024 66, Jun 2025 75, Jul 2025 170">Aug 2024: 80. Nov 2024: 66. Jun 2025: 75. Jul 2025: 170.</canvas>
+  </div>
+  <p class="figure-note">Surge peaks correspond to revision submissions. The July 2025 peak of 170 is the largest single month across the entire dataset.</p>
+</div>
+
+<p>This temporal pattern matters. The consultation was not a single event generating a fixed volume of objections. It was a sustained engagement that intensified with each revision — each time the applicant submitted amended plans, a substantial portion of the objecting community returned, often explicitly referencing their earlier submission and noting that the amendment had not addressed their concern.</p>
+
+<div class="timeline">
+  <div class="tl-item">
+    <p class="tl-date">June 2024</p>
+    <p class="tl-text"><strong>Application submitted</strong> for 27,350m², 18.7m-tall data centre on the Donkey Field adjacent to Spring Park campus.</p>
+  </div>
+  <div class="tl-item peak">
+    <p class="tl-date">July – August 2024</p>
+    <p class="tl-text"><strong>First wave (80 comments in August).</strong> Wadswick Green retirement village residents discover the application. Noise, light pollution, scale, and flooding dominate. First references to the existing data centre cluster.</p>
+  </div>
+  <div class="tl-item">
+    <p class="tl-date">October – November 2024</p>
+    <p class="tl-text"><strong>Revised plans → second wave (66 comments in November).</strong> Climate Team registers a holding objection. 400 objections noted in comments. Drainage and flooding emerge as persistent unresolved technical issues.</p>
+  </div>
+  <div class="tl-item peak">
+    <p class="tl-date">June – July 2025</p>
+    <p class="tl-text"><strong>Third revision → largest wave (170 comments in July).</strong> Two commenters independently describe contractors clearing the site while the application remains live. Community concern category nearly doubles proportionally.</p>
+  </div>
+  <div class="tl-item decision">
+    <p class="tl-date">December 2025</p>
+    <p class="tl-text"><strong>Committee date deferred.</strong> Neston &amp; Westwells Action Group submits a 17-page legal rebuttal of the 55-page officers' report with 24 hours' notice.</p>
+  </div>
+  <div class="tl-item decision">
+    <p class="tl-date">10 February 2026</p>
+    <p class="tl-text"><strong>Application approved with conditions</strong> at Wiltshire Council's Strategic Planning Committee.</p>
+  </div>
+</div>
+
+<h3>The retirement village</h3>
+
+<p>The most organised and analytically distinct community in the dataset is the 250 residents of Wadswick Green, a retirement village directly adjacent to the proposed Donkey Field site. Sixty comments explicitly identify the commenter as a Wadswick Green resident, and they share a common narrative: they moved there expecting a peaceful rural environment, many were not aware of the application when they arrived, and the proximity of the proposed building — as close as 200m from residential units — combined with the existing low-frequency hum from the adjacent Spring Park campus, is a central concern.</p>
+
+<blockquote>
+  "A year ago I moved to Wadswick Green retirement village where I hoped to spend the rest of my days in this beautiful, peaceful environment. To my horror I have learned that a planning application has been submitted to build a monstrous building which will be very close to Ash Lane."
+  <cite>— Wadswick Green resident, August 2024</cite>
+</blockquote>
+
+<blockquote>
+  "The Council was aware when granting planning permission for Wadswick Green of the intent that it should provide a tranquil site for elderly residents. It ensured that the bat population should be protected and cherished. This application, if granted, would be counter to the principles on which the planning of Wadswick Green was founded."
+  <cite>— Wadswick Green resident, November 2024</cite>
+</blockquote>
+
+<p>This second comment identifies something specific: the planning permissions that created Wadswick Green included conditions requiring bat-friendly lighting and wildlife corridor protection. Those conditions are directly relevant to the data centre application. Yet Wadswick Green residents had no formal notification right. They discovered the application through word of mouth.</p>
+
+<p>The Neston & Westwells Action Group — which formed in response to the application and includes Wadswick Green residents alongside village residents more broadly — ultimately obtained specialist planning legal advice and submitted the 17-page rebuttal that deferred the December 2025 committee date. This was a significant act of civic organisation. It also illustrates a structural inequity in the consultation system: communities with the time, resources, and professional networks to obtain specialist advice can meaningfully engage with the policy framework. Those without cannot.</p>
+
+<h3>The flooding argument</h3>
+
+<p>Drainage and flooding concerns appear in 48 substantive comments — 11% of the Wiltshire total — across all three waves, from July 2024 to July 2025. The framing is remarkably consistent: that a drainage pre-condition attached to a previous planning permission on the Spring Park campus was never satisfactorily discharged, and that the attenuation pond proposed for this application is undersized for the site's rainfall profile. One commenter performs the calculation explicitly: at the site's stated area of 7.3 hectares and at design rainfall of 50mm/hr (as specified in building regulations Part H), the 700m³ attenuation pond reaches capacity in under two hours from empty.</p>
+
+<p>The Drainage consultee and Highways both submitted responses. Neither addressed this calculation in the comment stream. Their responses are accessible via the portal's files tab as PDF attachments — present in the record, but not surfaced alongside the public representations that raised the concern. The final approval was granted subject to a condition requiring a full surface water drainage scheme to be approved before development begins — effectively acknowledging that the drainage question remained open at the point of consent.</p>
+
+<h3>The cluster question — no one asked it</h3>
+
+<p>Seven comments in the Wiltshire dataset reference the data centre cluster explicitly.</p>
+
+<blockquote>
+  "I object to yet another data centre in Westwells Road. This area is not designed for a massive campus, yet the council has already allowed six to be built. The seventh will be in the middle of a small village and is wholly inappropriate in size."
+  <cite>— Wiltshire commenter, July 2025</cite>
+</blockquote>
+
+<p>The cumulative impact of six operational or consented data centres on one road — in terms of noise, traffic, lighting, and community character — was never formally assessed. Each application is processed in isolation. No statutory consultee addressed cumulative impact in any of their submissions. The question of whether a seventh data centre on Westwells Road should be evaluated against the cumulative context of the existing six was raised only by individual residents — and was not addressed in the officers' report.</p>
+
+<h2 id="north-lincs">North Lincolnshire: two very different consultation records</h2>
+
+<p>The Humber Tech Park application at South Killingholme (PA-2024-584) attracted 54 substantive comments, all from named, dated, locally-rooted commenters identifying themselves as Habrough or Killingholme residents. Their concerns are hyper-specific to place: the existing noise from the A180, the oil refineries already surrounding the village, the roads that cannot handle HGV traffic, the agricultural land that constitutes the last open space in what several describe as a heavily industrialised area. There are no shared verbatim phrases, no template structures. Language, spelling, and emotional register vary naturally. One commenter is 16 years old and worried about green space. Another retired from Leeds specifically to find quiet.</p>
+
+<p>The application was received on 14 May 2024 and approved at committee on 31 July 2024. The formal decision notice was signed on 28 August 2024 — under three and a half months from submission. The 36 conditions attached directly address the concerns raised in comments: generator testing restricted to 09:00–18:00 weekdays only, with seven days' written notice to noise-sensitive receptor properties; a full surface water drainage scheme required before development; lighting restricted in accordance with a specified assessment report. The objectors correctly identified the risks. The approval recognised them through conditions. No commenter would have known this unless they retrieved the formal decision notice after the fact.</p>
+
+<div class="pull-quote">
+  <p>The objectors correctly identified the risks. The approval recognised them through conditions. No commenter would have known this unless they retrieved the formal decision notice after the fact.</p>
+</div>
+
+<p>The Elsham Tech Park application (PA-2025-643) presents a different picture. 259 of its 260 substantive comments carry no date. The majority address climate and energy concerns in broadly similar terms — the energy consumption of data centres, the need for 100% renewable power, the water usage implications. Many of these comments are genuine individual expressions of environmental concern. Others share verbatim phrases traceable to an international campaign platform: the text "This scheme would require a huge amount of electricity, and has no plans for renewable energy. That means it will have a huge negative impact on the climate, and should be rejected as incompatible with our climate change targets" appears, with minor variations, in 22 separate submissions.</p>
+
+<p>The absence of dates means it is impossible to reconstruct the order of submissions or test whether the campaign activity clustered around specific events. This is a consequence of how the campaign platform routes submissions to the planning portal — temporal metadata is not preserved in transit. Two comments are confirmed by their own text to originate outside the UK: one signs off "Arild Andervad, Sweden," another opens "we trust from Switzerland that the new projects will not increase the emissions." Comments from non-UK residents carry no material weight in English planning law.</p>
+
+<div class="stat-row">
+  <div class="stat-cell">
+    <p class="stat-num coral">436</p>
+    <p class="stat-label">Substantive comments, Wiltshire PL/2024/05527 — all dated, named, individually written</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num purple">260</p>
+    <p class="stat-label">Substantive comments, Elsham PA-2025-643 — 259 of 260 with no date</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num amber">18 mths</p>
+    <p class="stat-label">Duration of Wiltshire consultation before approval</p>
+  </div>
+  <div class="stat-cell">
+    <p class="stat-num teal">3½ mths</p>
+    <p class="stat-label">Submission to formal decision, Killingholme PA-2024-584</p>
+  </div>
+</div>
+
+<h2 id="why-approved">Why every application was approved</h2>
+
+<p>All four applications in this dataset were approved or resolved to be approved. The Killingholme application passed in under four months. The Wiltshire application took 18 months and survived 1,100+ objections. The Elsham application received minded-to-approve status subject to National Highways withdrawing a holding objection over the Barnetby Interchange transport model and a S106 agreement being signed. The sixth Ark data centre at Spring Park passed without comment.</p>
+
+<p>The reason is not that the planning system ignored public concern. It is that a specific national policy framework structured the outcome before the consultation began.</p>
+
+<h3>NPPF paragraph 87 and what it means in practice</h3>
+
+<p>The committee minutes for the 10 February 2026 Wiltshire decision record that officer Adam Madge directed the committee to NPPF paragraph 87, which states that planning policies and decisions must recognise the specific locational requirements of different sectors — including "clusters or networks of knowledge and data-driven, creative or high technology industries" and "new, expanded or upgraded facilities and infrastructure that are needed to support the growth of these industries (including data centres and grid connections)."</p>
+
+<p>The effect at Wiltshire was significant and counterintuitive. The existing Spring Park cluster — which residents and the Action Group had cited as a reason to refuse a seventh data centre — became, under NPPF 87, a positive material consideration. The site already constitutes the kind of cluster the policy seeks to protect and grow. The application was, on the national policy framework, structured for approval provided the technical objections on noise, drainage, and flood risk could be addressed by condition. Officers concluded they could.</p>
+
+<p>Not one of the 1,100+ objectors cited NPPF paragraph 87. The Neston & Westwells Action Group's rebuttal focused on drainage, flooding, local plan compliance, and the Corsham Neighbourhood Plan — the right technical and policy arguments to make, but ones the officer's report had already addressed. The policy argument that determined the outcome was one residents had no straightforward way to access without specialist planning advice.</p>
+
+<div class="policy-box">
+  <p class="policy-box-label">The policy question this raises</p>
+  <p>Does the designation of data centres as critical national infrastructure — and their explicit inclusion in NPPF paragraph 87 — effectively suspend local plan policies on scale, character, and settlement hierarchy for sites that meet the locational criteria? If so, is that the intended effect? And does the current consultation framework adequately reflect the reduced scope for local democratic input that this implies?</p>
+</div>
+
+<p>The Action Group's rebuttal also argued that the application breached the Corsham Neighbourhood Plan and the Strategic Local Plan's infill-only designation for Neston. These are material planning considerations. The officers' recommendation was that NPPF 87, as a statement of national policy, carried sufficient weight to support approval notwithstanding local plan policy. In all four applications in this dataset, the same dynamic operated: national policy provided the framework for approval; local consultation provided the mechanism for adjusting the conditions.</p>
+
+<h2 id="system">What the consultation system is not designed for</h2>
+
+<p>The five structural gaps described below are not failures of any individual LPA, consultee, or developer. They are features of a consultation framework designed for a different era — one in which major infrastructure attracted dozens of responses rather than hundreds, and in which campaign organisations did not have the tools to route submissions directly into planning portals from subscribers in other countries. The planning consultation system is encountering, for the first time at scale, a category of development that generates intense public concern, operates under a national policy framework that constrains local democratic input, and attracts both organic local opposition and organised national campaigns. It is not yet designed to handle all three simultaneously.</p>
+
+<h3>Aggregated comment counts conceal more than they reveal</h3>
+
+<p>The four applications in this dataset generated between 6 and 436 substantive comments. When reported as a single aggregate figure, these volumes obscure the character of public concern rather than illuminating it. The most contested application had 89% opposition among substantive public comments. There is no standard methodology for how LPAs are required to present consultation response data in officers' reports, no requirement to distinguish between applications attracting different volumes, and no guidance on how to characterise the mix of organic objection and campaign activity.</p>
+
+<h3>Statutory consultees submit to a parallel channel</h3>
+
+<p>At Wiltshire, Highways (three submissions), Drainage (three submissions), Wessex Water, the Environment Agency, the Climate Team, Ecology, and Public Protection all submitted responses as PDF attachments via the portal's files tab. The public-facing comment record shows the placeholder text "this comment was sent as an email attachment or letter, please click the files tab above to view." The PDFs exist and are technically accessible — but they are not surfaced in the comment stream that the public encounters when browsing representations. A member of the public cannot easily see whether the body responsible for drainage assessment has addressed the drainage concerns raised in their own submission.</p>
+
+<p>The Climate Team's submission included a holding objection. This is not a minor procedural note — a holding objection from a statutory consultee is a material consideration that shapes the application's trajectory. In the comment stream it is invisible.</p>
+
+<h3>Cumulative impact has no formal assessment trigger</h3>
+
+<p>Six data centres were operational or consented on Westwells Road before the seventh application was submitted. Their cumulative noise profile, combined lighting impact, traffic generation, and effect on the character of Neston village were never formally assessed as a whole. Each application is processed in isolation. The planning system has no threshold that triggers a cumulative impact assessment when consented development at a single location or within a defined settlement boundary reaches a material scale. Individual residents raised the question. No statutory body answered it.</p>
+
+<h3>Adjacent residential developments have no formal notification right</h3>
+
+<p>Multiple Wadswick Green residents state explicitly that they did not know about the application until they heard through word of mouth, often months after submission. The retirement village was built under planning permissions that included conditions on lighting and wildlife corridors — conditions directly relevant to the adjacent data centre application. Yet residents had no formal right to notification. The late discovery of the application by 250 people who became, over 18 months, one of the most technically capable objecting communities in the dataset is a consequence of notification design, not a failure of civic engagement.</p>
+
+<h3>The applicable policy framework is not disclosed to consultees</h3>
+
+<p>Residents engaged with the Wiltshire consultation as if their arguments could alter the fundamental planning balance. In the ordinary sense of consultation, this is what participation means. But the policy framework applicable to the application — NPPF paragraph 87, data centres' critical national infrastructure designation, the AI Opportunities Action Plan — was never set out for consultees. A resident objecting on grounds of local plan compliance was making a legitimate argument. They were not told that the officer's recommendation would be that national policy carried sufficient weight to approve the application notwithstanding that argument. Consultation without that disclosure is not fully informed participation.</p>
+
+<h2 id="findings">Findings and questions for national policy</h2>
+
+<p>These findings are grounded in this dataset and offered as hypotheses. None should be treated as an established national pattern without validation across a larger and more representative sample. They are presented here not as conclusions but as specific, testable questions that a larger research programme could address.</p>
+
+<div class="findings-grid">
+  <div class="finding-card">
+    <p class="finding-num">Finding 1</p>
+    <h3>Aggregated comment metrics misrepresent the character of public opposition</h3>
+    <p>Standard reporting of objection volumes does not capture whether objections are dated, locally-rooted, individually-written, or campaign-routed. The most contested application in this dataset had 89% opposition. That figure is invisible in aggregate statistics.</p>
+  </div>
+  <div class="finding-card">
+    <p class="finding-num">Finding 2</p>
+    <h3>NPPF paragraph 87 functions as a structural approval presumption</h3>
+    <p>In practice, the explicit inclusion of data centres in NPPF 87 means that cluster sites are approved provided technical objections can be conditioned. The conditions mirror community concerns. But the outcome is determined by the policy framework, not the consultation.</p>
+  </div>
+  <div class="finding-card">
+    <p class="finding-num">Finding 3</p>
+    <h3>The consultation system separates technical and public participation</h3>
+    <p>Statutory consultees respond through a parallel channel — PDF attachments not surfaced in the comment stream. The public cannot see whether their specific technical concerns have been addressed by the statutory body responsible for assessing them.</p>
+  </div>
+  <div class="finding-card">
+    <p class="finding-num">Finding 4</p>
+    <h3>Cumulative impact is not assessed, and no one is required to assess it</h3>
+    <p>Multiple applications on a single site or within a defined settlement are assessed in isolation. The Westwells Road cluster reached seven consented data centres without any cumulative impact assessment being commissioned or required.</p>
+  </div>
+  <div class="finding-card">
+    <p class="finding-num">Finding 5</p>
+    <h3>Approval is not the end of the community relationship</h3>
+    <p>The Killingholme and Elsham applications are outline consents with all matters reserved. Reserved matters applications — on design, scale, appearance, landscaping — must be submitted within three years. The detailed engagement with affected communities is still ahead.</p>
+  </div>
+</div>
+
+<p>The five gaps identified — comment classification guidance, statutory consultee visibility in the comment stream, cumulative impact triggers, notification rights for adjacent developments, and disclosure of the applicable national policy framework at validation — are all, in principle, addressable through Planning Practice Guidance and amendments to the Town and Country Planning (Development Management Procedure) Order. None requires primary legislation. What they require is a recognition that the consultation framework is encountering something it was not designed for, and that the communities affected deserve better tools to participate in it.</p>
+
+<p>The deeper question — whether communities that host major data centre infrastructure should have access to mechanisms beyond the standard planning consultation, given that the policy framework significantly constrains the scope of local democratic input — is one for national policy rather than individual local planning decisions. It was not answered in any of the four applications in this dataset. It was not asked.</p>
+
+</div><!-- /article-body -->
+
+</div><!-- /article-wrap -->
+
+<footer>
+  <div class="footer-inner">
+    <p><strong>Sources.</strong> Primary sources: Wiltshire Council Strategic Planning Committee minutes, 10 February 2026 (MId=16207), confirmed by dataset owner; PA/2024/584 formal decision notice signed by Rebecca Leggott, Development Management Lead, 28 August 2024 (North Lincolnshire Council); North Lincolnshire Council planning committee officer's report for PA/2025/643, 11 March 2026. PA/2025/643 was resolved "minded to approve" subject to National Highways withdrawing a holding objection and S106 signing; formal permission not yet issued at time of writing. The outcome for <a href="https://development.wiltshire.gov.uk/pr/s/planning-application/a0i3z00001CF6LbAAL/pl202310233" target="_blank" rel="noopener">Wiltshire PL/2023/10233</a> (approved with conditions) was confirmed by the dataset owner; the exact decision date has not been independently verified. Secondary sources: Data Center Dynamics, Grimsby Live, Foxglove, BBC, Place Yorkshire, The Business Desk.</p>
+    <p><strong>Data.</strong> 807 planning consultation comments from four UK local authority planning portals. All comment quotes are drawn verbatim from the planning record. No personal data is presented beyond names already public in planning records.</p>
+    <p>Analysis: June 2026</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+new Chart(document.getElementById('concernChart'), {
+  type: 'bar',
+  data: {
+    labels: ['Visual impact','Environment / ecology','Community character','Flooding / drainage','Noise','Traffic','Other'],
+    datasets: [{
+      data: [127, 97, 75, 48, 45, 24, 20],
+      backgroundColor: '#1a1a18',
+      borderRadius: 3
+    }]
+  },
+  options: {
+    indexAxis: 'y',
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: { ticks: { font: { size: 11 }, fontFamily: 'system-ui' }, grid: { color: 'rgba(0,0,0,0.06)' } },
+      y: { ticks: { font: { size: 12 } }, grid: { display: false } }
+    }
+  }
+});
+
+new Chart(document.getElementById('timelineChart'), {
+  type: 'bar',
+  data: {
+    labels: ["Jul '24","Aug '24","Oct '24","Nov '24","Dec '24","Jan '25","Jun '25","Jul '25","Aug '25"],
+    datasets: [{
+      data: [18, 80, 20, 66, 0, 2, 75, 170, 3],
+      backgroundColor: ["#B4B2A9","#1a1a18","#B4B2A9","#1a1a18","#B4B2A9","#B4B2A9","#1a1a18","#1a1a18","#B4B2A9"],
+      borderRadius: 3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: { legend: { display: false }, tooltip: {
+      callbacks: { label: ctx => ' ' + ctx.raw + ' comments' }
+    }},
+    scales: {
+      x: { ticks: { font: { size: 11 }, autoSkip: false }, grid: { display: false } },
+      y: { ticks: { font: { size: 11 } }, grid: { color: 'rgba(0,0,0,0.06)' } }
+    }
+  }
+});
+</script>
+</body>
+</html>
