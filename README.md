@@ -1,11 +1,5 @@
 # datacentrecomments
 
-## I overheard a conversation in Wiltshire and now I have a GitHub repository
-
-This is what happens when you don't just mind your own business.
-
----
-
 ## What is this
 
 An analysis of public comments submitted to four UK planning applications for data centres in Wiltshire and North Lincolnshire. 807 comments. 756 of them contained actual words rather than the phrase "please see attached."
@@ -24,10 +18,9 @@ I am not a planning expert. This is, in retrospect, obvious.
 
 ## What you will find inside
 
-- Charts about feelings
+- Charts
 - A retirement village with surprisingly strong opinions about drainage attenuation calculations
 - A field called the Donkey Field
-- Template emails from Sweden (long story)
 - The phrase "NPPF paragraph 87" used unironically, multiple times
 - 36 planning conditions on a single application, each more specific than the last
 - A 17-page legal rebuttal submitted with 24 hours' notice, which appears to be very on brand for the community involved
@@ -51,7 +44,7 @@ I read 807 planning comments. I classified them by concern category, checked for
 
 The bit about trying hard not to state things I couldn't support required several edits.
 
-**Important caveat:** Four applications is not a national dataset. Please do not cite this as evidence of anything national. It is evidence of what happened in Wiltshire and North Lincolnshire, to these four applications, during this period. That is already quite a lot.
+**Important caveat:** Four applications is not a national dataset. Please do not cite this as evidence of anything national. It is evidence of what happened in Wiltshire and North Lincolnshire, to these four applications, during this period.
 
 ---
 
